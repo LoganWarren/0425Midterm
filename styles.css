@@ -1,0 +1,156 @@
+/* General Reset and Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace; /* Terminal-like font */
+    background-color: #0d0d0d; /* Dark background resembling a terminal */
+    color: #33ff33; /* Green text to resemble terminal text */
+    overflow-x: hidden;
+}
+
+h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Title Section */
+.title-section {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+    transition: opacity 0.5s ease-out; /* Fade effect */
+}
+
+.title-section h1 {
+    font-size: 3em;
+    color: #33ff33;
+}
+
+.title-section p {
+    font-size: 1.2em;
+    color: #33ff33;
+    margin-top: 10px;
+}
+
+/* Scroll Arrow Section */
+.scroll-arrow {
+    position: fixed;
+    top: 250px; /* Adjusted position to move below the name */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+    transition: opacity 0.5s ease-out; /* Fade effect */
+}
+
+.scroll-arrow p {
+    font-size: 1.5em;
+    color: #33ff33;
+}
+
+.scroll-arrow .arrow {
+    font-size: 3em;
+    color: #33ff33;
+}
+
+/* Timeline Container */
+.timeline-wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    display: flex;
+    align-items: center;
+    scroll-behavior: smooth; /* Smooth scrolling */
+    position: relative;
+}
+
+.timeline-wrapper::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+
+.timeline {
+    display: flex;
+    gap: 150px; /* Space between events */
+    padding: 40px;
+    width: max-content; /* Ensure the content stretches beyond screen width */
+    position: relative;
+}
+
+/* Horizontal Line */
+.horizontal-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #33ff33;
+    z-index: 1;
+}
+
+/* Timeline Events */
+.event {
+    background-color: #1a1a1a;
+    border-left: 5px solid #33ff33;
+    padding: 20px;
+    width: 300px;
+    min-height: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    scroll-snap-align: start; /* Snap scrolling for event */
+    position: relative;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+/* Add connecting lines from events to the timeline */
+.event::after {
+    content: '';
+    position: absolute;
+    height: 50px;
+    width: 3px;
+    background-color: #33ff33;
+}
+
+.event-top::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.event-bottom::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Different Colors for Top and Bottom Events */
+.event-top {
+    position: relative;
+    top: -160px; /* Place top events above the timeline */
+}
+
+.event-bottom {
+    position: relative;
+    top: 160px; /* Place bottom events below the timeline */
+}
+
+/* Hover Effect */
+.event:hover {
+    transform: scale(1.05); /* Hover effect */
+}
+
+/* Make it responsive */
+@media (max-width: 768px) {
+    .event {
+        width: 80vw; /* Smaller width for mobile */
+    }
+}
